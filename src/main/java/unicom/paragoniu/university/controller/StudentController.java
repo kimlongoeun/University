@@ -1,4 +1,4 @@
-package unicom.paragoniu.university.Controller;
+package unicom.paragoniu.university.controller;
 
 import unicom.paragoniu.university.model.Student;
 import unicom.paragoniu.university.service.StudentService;

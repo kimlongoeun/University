@@ -10,7 +10,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(IllegalStateException.class)
     public String handleIllegalState(IllegalStateException ex, Model model) {
         model.addAttribute("errorMessage", ex.getMessage());
-        return "error"; // → templates/error.html (optional, create when ready)
+        return "error";
     }
 
     @ExceptionHandler(Exception.class)

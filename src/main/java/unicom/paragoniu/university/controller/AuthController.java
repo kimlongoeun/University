@@ -1,4 +1,4 @@
-package unicom.paragoniu.university.Controller;
+package unicom.paragoniu.university.controller;
 
 import unicom.paragoniu.university.dto.StudentDTO;
 import unicom.paragoniu.university.service.StudentService;
@@ -20,28 +20,20 @@ public class AuthController {
         this.studentService = studentService;
     }
 
-    // ── Home page ──────────────────────────────────────────────────────────
-
     @GetMapping("/")
     public String home() {
-        return "home";   // → templates/home.html
+        return "home";
     }
-
-    // ── Login ──────────────────────────────────────────────────────────────
-    // Spring Security handles POST /login automatically.
-    // We only need to serve the GET for the form.
 
     @GetMapping("/login")
     public String loginPage() {
-        return "login";  // → templates/login.html
+        return "login";
     }
-
-    // ── Register ───────────────────────────────────────────────────────────
 
     @GetMapping("/register")
     public String registerPage(Model model) {
         model.addAttribute("studentDTO", new StudentDTO());
-        return "register"; // → templates/register.html
+        return "register";
     }
 
     @PostMapping("/register")
@@ -51,12 +43,10 @@ public class AuthController {
             Model model,
             RedirectAttributes redirectAttributes) {
 
-        // 1. Bean-validation errors (blank fields, bad email, short password)
         if (bindingResult.hasErrors()) {
             return "register";
         }
 
-        // 2. Business logic errors (duplicate email, etc.)
         try {
             studentService.register(studentDTO);
         } catch (IllegalArgumentException ex) {
@@ -64,7 +54,6 @@ public class AuthController {
             return "register";
         }
 
-        // 3. Success → redirect to login with a flash message
         redirectAttributes.addFlashAttribute("successMessage",
                 "Account created! Please sign in.");
         return "redirect:/login";
