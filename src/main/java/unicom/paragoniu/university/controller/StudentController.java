@@ -1,11 +1,12 @@
 package unicom.paragoniu.university.controller;
 
+import unicom.paragoniu.university.dto.StudentDTO;
 import unicom.paragoniu.university.model.Student;
 import unicom.paragoniu.university.service.StudentService;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class StudentController {
@@ -16,29 +17,18 @@ public class StudentController {
         this.studentService = studentService;
     }
 
-    // ── All students list ──────────────────────────────────────────────────
-
-    @GetMapping("/students")
-    public String allStudents(Authentication authentication, Model model) {
-        Student currentStudent = resolveCurrentStudent(authentication);
-        model.addAttribute("currentStudent", currentStudent);
-        model.addAttribute("students", studentService.findAll());
-        return "students"; // → templates/students.html  (create when ready)
-    }
-
-    // ── My profile ─────────────────────────────────────────────────────────
-
-    @GetMapping("/profile")
-    public String profile(Authentication authentication, Model model) {
-        Student currentStudent = resolveCurrentStudent(authentication);
-        model.addAttribute("currentStudent", currentStudent);
-        return "profile"; // → templates/profile.html  (create when ready)
-    }
-
-    // ── Helper ─────────────────────────────────────────────────────────────
-
-    private Student resolveCurrentStudent(Authentication authentication) {
-        return studentService.findByEmail(authentication.getName())
-                .orElseThrow(() -> new IllegalStateException("Authenticated user not found in DB"));
+    @PostMapping("/profile/edit")
+    public String editProfileSubmit(@ModelAttribute StudentDTO dto,
+                                    Authentication authentication,
+                                    RedirectAttributes redirectAttributes) {
+        Student current = studentService.findByEmail(authentication.getName())
+                .orElseThrow(() -> new IllegalStateException("User not found"));
+        try {
+            studentService.updateProfile(current.getId(), dto);
+            redirectAttributes.addFlashAttribute("successMessage", "Profile updated successfully.");
+        } catch (IllegalArgumentException ex) {
+            redirectAttributes.addFlashAttribute("errorMessage", ex.getMessage());
+        }
+        return "redirect:/dashboard";
     }
 }
