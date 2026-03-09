@@ -1,4 +1,4 @@
-# NextGen University Portal
+# NextGen University 
 
 The purpose of this web app is to manage university students. Only an admin can access the admin dashboard to manage all students, while registered students can log in to view and edit their own profile.
 
