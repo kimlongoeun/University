@@ -5,8 +5,6 @@ The purpose of this web app is to manage university students. Only an admin can 
 ## Features
 
 - **Authentication** — Register, login, and logout with Spring Security (dual-chain: Admin + Student)
-- **Admin Dashboard** — Overview stats (total students, active, graduated) with full CRUD
-- **Student Management** — Add, edit, and delete students (admin only)
 - **Student Table** — View all students with full details and inline edit modal
 - **Student Profile** — Each student can view and update their own profile after login
 - **Responsive** — Mobile-friendly layout with Bootstrap 5
