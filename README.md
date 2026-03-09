@@ -14,7 +14,7 @@ The purpose of this web app is to manage university students. Only an admin can 
 
 ## Tools Used
 
-Built with **Gradle** and the following dependencies:
+Built with **Maven** and the following dependencies:
 
 - Spring Web
 - Spring Security
