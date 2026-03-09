@@ -16,6 +16,7 @@ Built with **Maven** and the following dependencies:
 
 - Spring Web
 - Spring Security
+- Spring web validation
 - Thymeleaf
 - Spring Data JPA
 - PostgreSQL Driver
