@@ -1,6 +1,7 @@
 # NextGen University 
 
 The purpose of this web app is to manage university students. registered students can log in to view and edit their own profile.
+https://nexgen-univeristy.up.railway.app
 
 ## Features
 
