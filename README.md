@@ -69,3 +69,8 @@ public class Student {
    ```
 4. If there are build errors due to environment differences, make sure to generate a JAR/WAR file so it matches the Railway runtime
 5. Generate a domain from Railway and your app will be live
+## Tools Used
+
+Additional changes in the defense during the classroon.
+Link: https://youtu.be/Vs8jriwVo-U?si=uE0xzSnccrGSGgwI
+Original Video: https://youtu.be/Vs8jriwVo-U
